@@ -36,7 +36,7 @@ create external table call_center(
 ,     cc_gmt_offset             double                  
 ,     cc_tax_percentage         double
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|'  STORED AS TEXTFILE 
 location '${LOCATION}/call_center';
 create database if not exists ${DB};
 use ${DB};
@@ -54,7 +54,7 @@ create external table catalog_page(
 ,     cp_description            string                  
 ,     cp_type                   string
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|'  STORED AS TEXTFILE
 location '${LOCATION}/catalog_page';
 create database if not exists ${DB};
 use ${DB};
@@ -91,7 +91,7 @@ create external table catalog_returns
     cr_store_credit           double,
     cr_net_loss               double
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|' STORED AS TEXTFILE 
 location '${LOCATION}/catalog_returns';
 create database if not exists ${DB};
 use ${DB};
@@ -135,7 +135,7 @@ create external table catalog_sales
     cs_net_paid_inc_ship_tax  double,
     cs_net_profit             double
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|' STORED AS TEXTFILE 
 location '${LOCATION}/catalog_sales';
 create database if not exists ${DB};
 use ${DB};
@@ -158,7 +158,7 @@ create external table customer_address
     ca_gmt_offset             double,
     ca_location_type          string
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|'  STORED AS TEXTFILE 
 location '${LOCATION}/customer_address';
 create database if not exists ${DB};
 use ${DB};
@@ -177,7 +177,7 @@ create external table customer_demographics
     cd_dep_employed_count     int,
     cd_dep_college_count      int 
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|'  STORED AS TEXTFILE 
 location '${LOCATION}/customer_demographics';
 create database if not exists ${DB};
 use ${DB};
@@ -205,7 +205,7 @@ create external table customer
     c_email_address           string,
     c_last_review_date        string
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|'  STORED AS TEXTFILE 
 location '${LOCATION}/customer';
 create database if not exists ${DB};
 use ${DB};
@@ -243,7 +243,7 @@ create external table date_dim
     d_current_quarter         string,
     d_current_year            string 
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|'  STORED AS TEXTFILE 
 location '${LOCATION}/date_dim';
 create database if not exists ${DB};
 use ${DB};
@@ -258,7 +258,7 @@ create external table household_demographics
     hd_dep_count              int,
     hd_vehicle_count          int
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|'  STORED AS TEXTFILE 
 location '${LOCATION}/household_demographics';
 create database if not exists ${DB};
 use ${DB};
@@ -270,7 +270,7 @@ create external table income_band(
 ,     ib_lower_bound            int                       
 ,     ib_upper_bound            int
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|'  STORED AS TEXTFILE 
 location '${LOCATION}/income_band';
 create database if not exists ${DB};
 use ${DB};
@@ -284,7 +284,7 @@ create external table inventory
     inv_warehouse_sk		bigint,
     inv_quantity_on_hand	int
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|'  STORED AS TEXTFILE 
 location '${LOCATION}/inventory';
 create database if not exists ${DB};
 use ${DB};
@@ -316,7 +316,7 @@ create external table item
     i_manager_id              int,
     i_product_name            string
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|'  STORED AS TEXTFILE 
 location '${LOCATION}/item';
 create database if not exists ${DB};
 use ${DB};
@@ -345,7 +345,7 @@ create external table promotion
     p_purpose                 string,
     p_discount_active         string 
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|'  STORED AS TEXTFILE 
 location '${LOCATION}/promotion';
 create database if not exists ${DB};
 use ${DB};
@@ -357,7 +357,7 @@ create external table reason(
 ,     r_reason_id               string              
 ,     r_reason_desc             string                
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|'  STORED AS TEXTFILE 
 location '${LOCATION}/reason';
 create database if not exists ${DB};
 use ${DB};
@@ -372,7 +372,7 @@ create external table ship_mode(
 ,     sm_carrier                string                      
 ,     sm_contract               string                      
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|' STORED AS TEXTFILE 
 location '${LOCATION}/ship_mode';
 create database if not exists ${DB};
 use ${DB};
@@ -402,7 +402,7 @@ create external table store_returns
     sr_store_credit           double,
     sr_net_loss               double             
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|' STORED AS TEXTFILE 
 location '${LOCATION}/store_returns';
 create database if not exists ${DB};
 use ${DB};
@@ -435,7 +435,7 @@ create external table store_sales
     ss_net_paid_inc_tax       double,
     ss_net_profit             double                  
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|' STORED AS TEXTFILE 
 location '${LOCATION}/store_sales';
 create database if not exists ${DB};
 use ${DB};
@@ -474,7 +474,7 @@ create external table store
     s_gmt_offset              double,
     s_tax_precentage          double                  
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|' STORED AS TEXTFILE 
 location '${LOCATION}/store';
 create database if not exists ${DB};
 use ${DB};
@@ -494,7 +494,7 @@ create external table time_dim
     t_sub_shift               string,
     t_meal_time               string
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|'  STORED AS TEXTFILE 
 location '${LOCATION}/time_dim';
 create database if not exists ${DB};
 use ${DB};
@@ -517,7 +517,7 @@ create external table warehouse(
 ,     w_country                 string                   
 ,     w_gmt_offset              double                  
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|' STORED AS TEXTFILE 
 location '${LOCATION}/warehouse';
 create database if not exists ${DB};
 use ${DB};
@@ -540,7 +540,7 @@ create external table web_page(
 ,     wp_image_count            int                       
 ,     wp_max_ad_count           int
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|' STORED AS TEXTFILE 
 location '${LOCATION}/web_page';
 create database if not exists ${DB};
 use ${DB};
@@ -574,7 +574,7 @@ create external table web_returns
     wr_account_credit         double,
     wr_net_loss               double
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|' STORED AS TEXTFILE 
 location '${LOCATION}/web_returns';
 create database if not exists ${DB};
 use ${DB};
@@ -618,7 +618,7 @@ create external table web_sales
     ws_net_paid_inc_ship_tax  double,
     ws_net_profit             double
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|'  STORED AS TEXTFILE 
 location '${LOCATION}/web_sales';
 create database if not exists ${DB};
 use ${DB};
@@ -654,5 +654,5 @@ create external table web_site
     web_gmt_offset        double,
     web_tax_percentage    double
 )
-row format delimited fields terminated by '|' 
+row format delimited fields terminated by '|' STORED AS TEXTFILE  
 location '${LOCATION}/web_site';
