@@ -40,6 +40,8 @@ public class GenTable extends Configured implements Tool {
         options.addOption("t","table", true, "table");
         options.addOption("d","dir", true, "dir");
         options.addOption("p", "parallel", true, "parallel");
+        options.addOption("text", "text", false, "text");
+        options.addOption("snappy", "snappy", false, "snappy");
         CommandLine line = parser.parse(options, remainingArgs);
 
         if(!(line.hasOption("scale") && line.hasOption("dir"))) {
@@ -98,6 +100,15 @@ public class GenTable extends Configured implements Tool {
         LazyOutputFormat.setOutputFormatClass(job, TextOutputFormat.class);
         MultipleOutputs.addNamedOutput(job, "text", 
           TextOutputFormat.class, LongWritable.class, Text.class);
+        
+        if (line.hasOption("snappy") || (line.hasOption("text") == false)) {
+          TextOutputFormat.setCompressOutput(job, true);
+          if (line.hasOption("snappy")) {
+             TextOutputFormat.setOutputCompressorClass(job, SnappyCodec.class);
+          } else {
+             TextOutputFormat.setOutputCompressorClass(job, DefaultCodec.class);
+          }
+        }
 
         boolean success = job.waitForCompletion(true);
 
